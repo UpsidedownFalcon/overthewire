@@ -67,9 +67,55 @@ file ./-file0X
 cat ./-file07
 ```
 
-> password for bandit5 = 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+To look through all files at once in `~/inhere/`: 
+```
+find . -type f -exec file {} +
+```
+where 
+- `find .` recursively lists every file and directory inside the working directory
+- `-type f` targets only files, skipping directory names
+- `-exec` instructs to execute the following command for every single file recursively found previously
+- `file` command to check the file type
+- `{}` is a placeholder for the discovered file paths
+- `+` bundles multiple files together into a single invocation of the `file` command
+
+> password for bandit5 = 6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG
 
 ---
 
 # Level 5 -> Level 6 
+```
+ls
+cd inhere
+ls
+find .                           # recursively lists every file + directory from current working directory
+find . -type f                   # recursively lists everything that is only the type file from current working directory
+find . -type f -size 1033c       # recursively everything that is only a file + 1033 bytes in size from current directory
+find . -type f -size 1033c -exec file {} +
+cat ./maybehere07/".file2"
+```
+
+> password for bandit6 = pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
+
+--- 
+
+# Level 6 -> 7 
+```
+cd /                                                        # root of the server
+find . -type f -user bandit7 -group bandit6 -size 33c       # find all in the working directory that is a file + owned by user bandit7 + owned by group bandit6 + 33 bytes in size
+cat ./var/lib/dpkg/info/"bandit7.password"
+```
+
+> password for bandit7 = Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3
+
+--- 
+
+
+
+
+
+
+
+
+
 
